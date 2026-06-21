@@ -847,10 +847,12 @@ do
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
-      formatters = {
-        black = {
-          prepend_args = { '--line-length', '100' },
-        },
+    },
+    -- Customize individual formatters here. This is a top-level `setup()` key,
+    -- a sibling of `formatters_by_ft` (not nested inside it).
+    formatters = {
+      black = {
+        prepend_args = { '--line-length', '100' },
       },
     },
   }

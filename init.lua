@@ -92,14 +92,31 @@ do
   -- Enable faster startup by caching compiled Lua modules
   vim.loader.enable()
 
+  -- Use treesitter for folding
+  -- For some reason, this does not work when opening a single buffer, have to run :set foldmethod=expr in that buffer for folding to work
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+
   -- Set <space> as the leader key
   -- See `:help mapleader`
   --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
   vim.g.mapleader = ' '
   vim.g.maplocalleader = ' '
 
+  -- Open file in same dir as current file
+  vim.cmd 'cabbr <expr> %% expand("%:p:h")'
+
+  -- Switch buffer Keymaps
+  vim.keymap.set('n', '<C-n>', ':bnext<CR>')
+  vim.keymap.set('n', '<C-b>', ':bprevious<CR>')
+  vim.keymap.set('n', '<TAB>', ':b#<CR>')
+
+  -- Don't auto fold
+  vim.opt.foldenable = false
+
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`

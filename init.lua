@@ -95,9 +95,9 @@ do
   vim.loader.enable()
 
   -- Use treesitter for folding
-  -- For some reason, this does not work when opening a single buffer, have to run :set foldmethod=expr in that buffer for folding to work
+  -- NOTE: nvim-treesitter `main` removed `nvim_treesitter#foldexpr()`; use Neovim's built-in treesitter foldexpr instead
   vim.opt.foldmethod = 'expr'
-  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+  vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 
   -- Set <space> as the leader key
